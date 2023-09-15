@@ -1,0 +1,159 @@
+def vizhCode():
+    
+    x=''
+    word = input('Введите строку для кодировки:: ')
+    key = input('Введите ключ: ')
+    print ('Слово: '+ word)
+    print ('Ключ: '+ key)
+    n=len(word)
+    m=len(key)
+    d=n//m
+    e=n%m
+    print('ключ накладывается',d,'раз и',e,'букв')
+    for i in range(e):
+        x+=key[i]
+    c=d*key+x
+    print('и полученный ключ =',c)
+    for i in range(n):
+        f=ord(word[i])+ord(c[i])
+        if f >1103:
+            q=f-1103; w=chr(q);  print(w,end='')
+def vizhDecode():
+    x=''
+    word = input('Введите строку для декодировки:: ')
+    key = input('Введите ключ: ')
+    print ('Слово: '+ word)
+    print ('Ключ: '+ key)
+    n=len(word)
+    m=len(key)
+    d=n//m
+    e=n%m
+    print('ключ накладывается',d,'раз и',e,'букв')
+    for i in range(e):
+        x+=key[i]
+    c=d*key+x
+    print('и полученный ключ =',c)
+    for i in range(n):
+        if ord(word[i]) <1103:
+           
+            f=ord(word[i])+1103; 
+        q=f-ord(c[i])
+        w=chr(q); w; print(w,end='')
+def kvadrCode():
+    number=[]
+    
+    matrix = [['к','а','л','ш','н'],
+             ['и','о','в','р','т'],
+             ['е','м','б','г','д'],
+             ['ж','з','п','с','у'],
+             ['ф','х','ц','ч','щ'],
+             ['ъ','ы','ь','э','ю'],
+             ['я','-',',','.',' '],]
+    text=input('ведите текст для шифрования: ')
+    print('вы ввели фразу:',text)
+    for bukva in text.lower().replace('j','i'):
+        for i in range(len(matrix)):
+            for j in range(len(matrix[i])):
+                if bukva==matrix[i][j]:
+                    number.append(str(i+1))
+                    number.append(str(j+1))
+    sentence = "".join(number)
+    print(sentence)              
+def kvadrDecode():
+    word =[]
+    matrix = [['к','а','л','ш','н'],
+             ['и','о','в','р','т'],
+             ['е','м','б','г','д'],
+             ['ж','з','п','с','у'],
+             ['ф','х','ц','ч','щ'],
+             ['ъ','ы','ь','э','ю'],
+             ['я','-',',','.',' '],]
+    str1=input('Введите строку для декодирования: ')
+    
+    for k in range(0,len(str1),2):
+        i=int(str1[k])-1
+        j=int(str1[k+1])-1
+        word.append(matrix[i][j])
+    sentence = "".join(word)
+    print(sentence)
+def ex1():
+    print('Метод Цезаря')
+
+    num=0
+    while num != '3':
+        num=input('\nChoose ex. (1-2)\n1)Code\n2)Decode \nExit - 3\n >>>')
+        if num=='1': 
+            words=[]
+            str1=input('Введите строку для кодирования: ')
+            key=int(input('Введите ключ: '))
+            for s in str1:
+                print('Cимвол=',chr(ord(s)),'Код=',ord(s))
+                if s!=' ':
+                    s=chr(ord(s)-key)
+                    words.append(s)
+                else:
+                    s=chr(ord(s))
+                    words.append(s) 
+            sentence = ''.join(words)
+            print('Строка после кодирования: ',sentence)
+        elif num=='2':
+            words=[]
+            str1=input('Введите строку для декодирования: ')
+            key=int(input('Введите ключ: '))
+            for s in str1:
+                print('Cимвол=',chr(ord(s)),'Код=',ord(s))
+                if s!=' ':
+                    s=chr(ord(s)+key)
+                    words.append(s)
+                else:
+                    s=chr(ord(s))
+                    words.append(s) 
+            sentence = ''.join(words)
+            print('Строка после декодирования: ',sentence)
+        elif num=='3':
+            print('Good bye!')
+
+    
+    
+
+def ex2():
+    print('Кодирование Полибианским квадратом')
+    num=0
+    while num != '3':
+        num=input('Choose ex. (1-2)\n1)Code\n2)Decode \nExit - 3\n >>>')
+        if num=='1': 
+            kvadrCode()
+        elif num=='2':
+            kvadrDecode()
+        elif num=='3':
+            print('Good bye!')
+    
+   
+    
+def ex3():
+    print('Шифр Вижинера')
+    num=0
+    while num != '3':
+        num=input('\nChoose ex. (1-2)\n1)Code\n2)Decode \nExit - 3\n >>>')
+        if num=='1': 
+            vizhCode()
+        elif num=='2':
+            vizhDecode()
+        elif num=='3':
+            print('Good bye!')
+
+
+v=0
+while v != '4':
+    v=input('\nChoose ex. (1-3) Exit - 4\n >>>')
+    if v=='1': 
+        ex1()
+    elif v=='2':
+        ex2()
+        
+    elif v=='3':
+        ex3()
+    elif v=='4':
+        print('Good bye!')
+    
+       
